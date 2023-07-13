@@ -1,4 +1,14 @@
 const { celebrate, Joi } = require('celebrate');
+const { BadRequestError } = require('../errors/BadRequestError');
+const { BAD_REQUEST_MESSAGE } = require('../utils/constants');
+
+const validationUrl = (url) => {
+  // eslint-disable-next-line no-useless-escape
+  if (url.match(/http(s)?:\/\/(ww.)?[a-z0-9\.\-]+\/[a-z0-9\.\-_~:\/?#\[\]@!$&'()*+,;=]+/gi)) {
+    return url;
+  }
+  throw new BadRequestError(BAD_REQUEST_MESSAGE);
+};
 
 module.exports.validationLogin = celebrate({
   body: Joi.object().keys({
@@ -35,8 +45,8 @@ module.exports.validationCreateMovie = celebrate({
     duration: Joi.number().required(),
     year: Joi.string().min(2).max(4).required(),
     description: Joi.string().min(2).max(2000).required(),
-    image: Joi.string().url().required(),
-    thumbnail: Joi.string().url().required(),
+    image: Joi.string().required().custom(validationUrl),
+    thumbnail: Joi.string().required().custom(validationUrl),
     movieId: Joi.number().required(),
     nameRU: Joi.string().min(2).max(30).required(),
     nameEN: Joi.string().min(2).max(30).required(),
