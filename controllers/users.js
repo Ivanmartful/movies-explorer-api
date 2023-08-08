@@ -55,7 +55,7 @@ module.exports.createUser = (req, res, next) => {
 
 module.exports.getUserById = (req, res, next) => {
   User
-    .findById(req.params.id)
+    .findById(req.params._id)
     .orFail(() => {
       throw new NotFoundError(NOT_FOUND_MESSAGE);
     })
