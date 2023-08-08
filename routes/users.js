@@ -9,7 +9,7 @@ const {
   validationGetUserById,
 } = require('../middlewares/validation');
 
-userRouter.get('/me', validationGetUserById, getUserById);
+userRouter.get('/me', getUserById);
 userRouter.patch('/me', validationUpdateUser, updateUser);
 
 module.exports = userRouter;
