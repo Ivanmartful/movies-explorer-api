@@ -69,6 +69,20 @@ module.exports.getUserById = (req, res, next) => {
     });
 };
 
+module.exports.getCurrentUser = (req, res, next) => {
+  User
+    .findById(req.user._id)
+    .then((user) => {
+      if (!user) {
+        throw new NotFoundError(NOT_FOUND_MESSAGE);
+      }
+      res.status(OK).send(user);
+    })
+    .catch((err) => {
+      next(err);
+    });
+};
+
 module.exports.updateUser = (req, res, next) => {
   const { email, name } = req.body;
   User
