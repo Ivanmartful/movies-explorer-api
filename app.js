@@ -34,6 +34,7 @@ app.use((err, req, res, next) => {
     message: statusCode === 500
       ? SERVER_ERROR_MESSAGE
       : message,
+      err: err.message
   });
   next();
 });
