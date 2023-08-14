@@ -4,7 +4,7 @@ const { BAD_REQUEST_MESSAGE } = require('../utils/constants');
 
 const validationUrl = (url) => {
   // eslint-disable-next-line no-useless-escape
-  if (url.match(/http(s)?:\/\/(ww.)?[a-z0-9\.\-]+\/[a-z0-9\.\-_~:\/?#\[\]@!$&'()*+,;=]+/gi)) {
+  if (url.match(/https?:\/\/(www\.)?\d?\D{1,}#?/)) {
     return url;
   }
   throw new BadRequestError(BAD_REQUEST_MESSAGE);
