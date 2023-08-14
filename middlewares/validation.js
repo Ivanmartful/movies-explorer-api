@@ -41,15 +41,15 @@ module.exports.validationGetUserById = celebrate({
 module.exports.validationCreateMovie = celebrate({
   body: Joi.object().keys({
     country: Joi.string().min(2).max(50).required(),
-    director: Joi.string().min(2).max(50).required(),
+    director: Joi.string().min(2).max(100).required(),
     duration: Joi.number().required(),
     year: Joi.string().min(2).max(4).required(),
     description: Joi.string().min(2).max(2000).required(),
     image: Joi.string().required().custom(validationUrl),
     thumbnail: Joi.string().required().custom(validationUrl),
     movieId: Joi.number().required(),
-    nameRU: Joi.string().min(2).max(30).required(),
-    nameEN: Joi.string().min(2).max(30).required(),
+    nameRU: Joi.string().min(2).max(100).required(),
+    nameEN: Joi.string().min(2).max(100).required(),
   }),
 });
 
