@@ -40,7 +40,7 @@ module.exports.validationGetUserById = celebrate({
 
 module.exports.validationCreateMovie = celebrate({
   body: Joi.object().keys({
-    country: Joi.string().min(2).max(50).required(),
+    country: Joi.string().min(2).max(100).required(),
     director: Joi.string().min(2).max(100).required(),
     duration: Joi.number().required(),
     year: Joi.string().min(2).max(4).required(),

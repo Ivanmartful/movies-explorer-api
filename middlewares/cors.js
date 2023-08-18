@@ -1,7 +1,8 @@
 const allowedCors = [
-  'domainname.ivan.nomoreparties.sbs',
-  'domainname.ivan.nomoreparties.sbs',
-  'http://localhost:3000'
+  'domainname.ivan.nomoreparties.co',
+  'domainname.ivan.nomoreparties.co',
+  'http://localhost:3000',
+  'https://localhost:3000'
 ];
 
 module.exports = (req, res, next) => {
