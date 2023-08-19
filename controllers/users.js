@@ -92,10 +92,15 @@ module.exports.updateUser = (req, res, next) => {
     })
     .then((user) => res.send(user))
     .catch((err) => {
-      if (err.name === 'CastError' || err.name === 'ValidationError') {
+      if (err.name === 'ValidationError') {
         next(new BadRequestError(BAD_REQUEST_MESSAGE));
-      } else {
-        next(err);
+        return;
+      } else if (err.name === 'CastError') {
+        next(new BadRequestError(BAD_REQUEST_MESSAGE));
+        return;
+      } else if (err.code === 11000) {
+        next(new UserExistsError(USER_EXISTS_MESSAGE));
       }
+      next(err);
     });
 };
